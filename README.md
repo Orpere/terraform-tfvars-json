@@ -22,18 +22,26 @@ git clone git@github.com:orlando-pereira/terraform-tfvars-json.git
 cd terraform-tfvars-json
 ```
 
-- apply terraform
+- update your values in terraform.tfvars.json
+  
+```json
+{
+	"ami_id": "<consul ami>",
+	"ssh_key_name": "<key pair name>",
+	"vpc_id": "<vpc>",
+	"spot_price": "<price>",
+	"region": "us-east-1",
+	"hosted_zone_domain_name": "eample.xt",
+	"vault_domain_name": "vault.eample.xt",
+	"v_ami_id": "<vault ami created with packer>"
+}
+```
+
+- run terraform plan and you should see the line on the end 
   
 ```bash
-terraform apply
+Plan: 98 to add, 0 to change, 0 to destroy.
 ```
 
-- it should show the below
-
-```bash
-Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
-
-Outputs:
-
-test_result = hello world
-```
+- now you can run terraform apply
+  
