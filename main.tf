@@ -14,13 +14,12 @@ module "consul" {
 }
 
 module "vault" {
-  source  = "pbar1/vault/aws"
-  version = "0.0.1"
-  # insert the 6 required variables here
+  source  = "hashicorp/vault/aws"
+  version = "0.13.3"
+  # insert the 4 required variables here
+  hosted_zone_domain_name = var.hosted_zone_domain_name
   ami_id = var.v_ami_id
-  vpc_id = var.v_vpc_id
+  vault_domain_name = var.vault_domain_name
   ssh_key_name = var.ssh_key_name
-  zone_id = var.v_zone_id
-  domain_name = var.v_domain_name
-  acm_cert_arn = var.v_acm_cert_arn
 }
+

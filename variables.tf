@@ -29,22 +29,20 @@ variable "region" {
 
 # Vault
 
+variable "hosted_zone_domain_name" {
+  description = "The domain name of the Route 53 Hosted Zone in which to add a DNS entry for Vault (e.g. example.com). Only used if var.create_dns_entry is true."
+  type        = string
+  default     = null
+}
+
+variable "vault_domain_name" {
+  description = "The domain name to use in the DNS A record for the Vault ELB (e.g. vault.example.com). Make sure that a) this is a domain within the var.hosted_zone_domain_name hosted zone and b) this is the same domain name you used in the TLS certificates for Vault. Only used if var.create_dns_entry is true."
+  type        = string
+  default     = null
+}
+
 variable "v_ami_id" {
-  description = "AMI ID to launch the Vault auto scaling group with"
-}
-
-variable "v_vpc_id" {
-  description = "ID of the AWS VPC to create the Vault cluster in"
-}
-
-variable "v_zone_id" {
-  description = "Route53 hosted zone ID to create the DNS entry in"
-}
-
-variable "v_domain_name" {
-  description = "Domain name of DNS entry to create"
-}
-
-variable "v_acm_cert_arn" { 
-  description = "Cert ARN for NLB TLS termination"
+  description = "The ID of the AMI to run in the cluster. This should be an AMI built from the Packer template under examples/vault-consul-ami/vault-consul.json. If no AMI is specified, the template will 'just work' by using the example public AMIs. WARNING! Do not use the example AMIs in a production setting!"
+  type        = string
+  default     = null
 }
